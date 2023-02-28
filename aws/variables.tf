@@ -7,6 +7,12 @@ variable "name_prefix" {
   description = "Name prefix for resources on AWS"
 }
 
+variable "environment" {
+    type      = string
+    default   = "production"
+    description = "Environment"
+}
+
 variable "tags" {
   type        = map(string)
   default     = {}
@@ -89,7 +95,7 @@ variable "db_name" {
 
 variable "db_username" {
   type        = string
-  default     = "dt"
+  default     = "dtadmin"
   description = "Default DB username"
   sensitive = true
 }

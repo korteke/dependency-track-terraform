@@ -1,15 +1,15 @@
 resource "random_password" "password" {
-  length           = 16
+  length           = 24
   special          = true
   override_special = "_%@"
 }
  
-resource "aws_secretsmanager_secret" "dt-database-secret1" {
+resource "aws_secretsmanager_secret" "dt-database-secret" {
    name = "dt-database-secret"
 }
 
 resource "aws_secretsmanager_secret_version" "sversion" {
-  secret_id = aws_secretsmanager_secret.dt-database-secret1.id
+  secret_id = aws_secretsmanager_secret.dt-database-secret.id
   secret_string = <<EOF
    {
     "username": "${var.db_username}",
@@ -18,10 +18,10 @@ resource "aws_secretsmanager_secret_version" "sversion" {
 EOF
 }
 
-data "aws_secretsmanager_secret" "dt-database-secret1" {
-  arn = aws_secretsmanager_secret.dt-database-secret1.arn
+data "aws_secretsmanager_secret" "dt-database-secret" {
+  arn = aws_secretsmanager_secret.dt-database-secret.arn
 }
 
 data "aws_secretsmanager_secret_version" "creds" {
-  secret_id = data.aws_secretsmanager_secret.dt-database-secret1.arn
+  secret_id = data.aws_secretsmanager_secret.dt-database-secret.arn
 }
