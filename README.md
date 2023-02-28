@@ -10,4 +10,4 @@ TODO:
     * Check LB's
 * Check DB settings
 * Define all the DT variables
-    * https://registry.terraform.io/modules/cn-terraform/ecs-fargate-task-definition/aws/latest
+    * https://docs.dependencytrack.org/getting-started/deploy-docker/
